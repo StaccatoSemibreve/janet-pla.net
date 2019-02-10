@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Janet Planet: Ordinal Heartifier</title>
+    <link rel="stylesheet" href="/styles.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+  </head>
+
+	<body>
+	  <a href="/index.html"><h1>The Janet Planet</h1></a>
+	  <h2>The Ordinal Heartifier</h2>
+	  
+	  <form id="heartifier 1" onsubmit='return false'>
+	  	<input type="number" id="number" placeholder="number" />
+	  	<input type="submit" id="calculate hearts" name="calculate hearts" value="number → hearts" onclick='calculateHearts()' />
+	  </form>
+	  
+	  <form id="heartifier 2" onsubmit='return false'>
+	  	<input type="text" id="hearts" name="hearts" placeholder="hearts" pattern="[<3]+" />
+	  	<input type="submit" id="calculate number" name="calculate number" value="number ← hearts" onclick='calculateNumber()' />
+	  </form>
+	  
+	  <image src="/res/janjan-boop-bat.png" alt="a white, pink, purple, blue, and green chao, happily nuzzling an adorable bat, with hearts everywhere" title="janjan nuzzling an adorable bat, by an adorable bat" />
+	  	
+	  <p name="error" id="error" style="color:red"></p>
+	  
+	  <button onclick="hider()" name="hider" id="hider">show/hide instructions</button>
+	  <div id="instructions" name="instructions" style="display:none">
+	  	<p>
+	  		to generate a series of hearts in the von neumann ordinal form* equivalent to any given (non-negative) number, just put that number in the first text box (the one for numbers, labelled "number") and click "number → hearts" (or press enter while in the text box)
+	  		<br><br>
+	  		to do the reverse (as in, generate the original number from the sequence of hearts), put the hearts in the second text box (the one for text, labelled "hearts") and click "number ← hearts" (or press enter again)
+	  		<br><br>
+	  		to be confused as to what these actually are, be basically anyone :D
+	  		<br><br>
+	  		*yes, that is what they're called D: (well, something along those lines)
+	  	</p>
+	  </div>
+	</body>
+	
+	<script>
+	  function calculateHearts() {
+		var hearts = document.getElementById("hearts");
+		hearts.value="<3";
+		for(var count = document.getElementById("number").value; count > 0; count--)
+			hearts.value = "<" + hearts.value.substring(1, hearts.value.length-1) + hearts.value + "3";
+	}
+	
+	function calculateNumber() {
+		document.getElementById("number").value = -1;
+		var hearts = document.getElementById("hearts");
+		
+		var testString = "<3";
+		var count = 0;
+		for(count = 0; testString.length < hearts.value.length; count++)
+			testString = "<" + testString.substring(1, testString.length-1) + testString + "3";
+		if(testString === hearts.value) {
+			document.getElementById("number").value = count;
+			document.getElementById("error").innerHTML = "";
+		}
+		else
+			document.getElementById("error").innerHTML = "error: invalid input";
+	}
+	
+	function hider() {
+		if(document.getElementById("instructions").style.display === "none")
+			document.getElementById("instructions").style.display = "";
+		else
+			document.getElementById("instructions").style.display = "none";
+	}
+	</script>
+</html>

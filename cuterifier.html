@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Janet Planet: Cuterifier</title>
+    <link rel="stylesheet" href="/styles.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+  </head>
+  
+  <h1><a href="/index.html">The Janet Planet</a></h1>
+  <h2>The Cuterifier</h2>
+  <form id="cuterifier" onsubmit='return false'>
+  	<input type="text" id="cutie" placeholder="cut(er(est(…)))ie" pattern="^[A-Za-z]+ie$" />
+  	<input type="submit" id="cuterify" value="cuterify" onclick='cuterifyaaaa()' />
+  </form>
+  
+  <image src="/res/janjan-blush-bat.png" />
+  
+  <br>
+  <button onclick="hider()" name="hider" id="hider">show/hide instructions</button>
+  <div id="instructions" name="instructions" style="display:none">
+  	<p>to make any word ending with "ie" more so, simply type it into the text box and press "cuterify"
+  		<br><br>
+  		any word ending with "erie" will now end with "estie", any word ending with "estie" will now end with "esterie", and any word simply ending with "ie" will now end with "erie" :D</p>
+  </div>
+  
+  <script>
+    function cuterifyaaaa() {
+  	var cutie = document.getElementById("cutie");
+  	if(cutie.value.search("erie$") != -1)
+  		cutie.value = cutie.value.substring(0, cutie.value.length-4) + "estie";
+  	else if(cutie.value.search("ie$") != -1)
+  		cutie.value = cutie.value.substring(0, cutie.value.length-2) + "erie";
+    }
+  
+    function hider() {
+  	  if(document.getElementById("instructions").style.display === "none")
+  		  document.getElementById("instructions").style.display = "";
+    	else
+  	  	document.getElementById("instructions").style.display = "none";
+    }
+  </script>
